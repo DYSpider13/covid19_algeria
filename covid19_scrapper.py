@@ -15,7 +15,7 @@ from datetime import datetime
 
 path_do_driver = "./chromedriver"
 file_out = "data_corona.json"
-url = "https://msprh-dz.maps.arcgis.com/apps/opsdashboard/index.html#/eb524fcb95374f2cb60352b426e6e340"
+url = "http://covid19.sante.gov.dz/carte/"
 
 
 def getNameWilaya(txt):
@@ -54,7 +54,7 @@ wait = WebDriverWait(driver, 20)
 sleep(10)
 
 try:
-    wilayas_elemts = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "external-html")))
+    wilayas_elemts = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "ember49")))
 except:
     print("Error")
     sys.exit()
@@ -146,7 +146,7 @@ for wilaya in wilayas_elemts:
 
 
 wilayas_dict["DateRaw"] = datetime.today()
-wilayas_dict["Date"] = datetime.today().strftime("%d/%m/%Y")
+wilayas_dict["Date"] = datetime.today().strftime("%d/%m/%Y %H:%M")
 wilayas_dict["TOTAL"] = {"Total": total_cases, "Hosp": total_hosp, "Deaths": total_deaths, "Healed": total_healed}
 
 
